@@ -48,7 +48,7 @@ func TestPackRequest(t *testing.T) {
 
 func TestGetArgsTypeList(t *testing.T) {
 	type Test struct{}
-	str, err := getArgsTypeList([]interface{}{nil, 1, []int{2}, true, []bool{false}, "a", []string{"b"}, Test{}, &Test{}, []Test{}, map[string]Test{}})
+	str, err := GetArgsTypeList([]interface{}{nil, 1, []int{2}, true, []bool{false}, "a", []string{"b"}, Test{}, &Test{}, []Test{}, map[string]Test{}})
 	assert.NoError(t, err)
 	assert.Equal(t, "VJ[JZ[ZLjava/lang/String;[Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;[Ljava/lang/Object;Ljava/util/Map;", str)
 }

@@ -33,7 +33,7 @@ import (
 // dubbo
 /////////////////////////////////////////
 
-func getArgType(v interface{}) string {
+func GetArgType(v interface{}) string {
 	if v == nil {
 		return "V"
 	}
@@ -124,14 +124,14 @@ func getArgType(v interface{}) string {
 	// return "java.lang.RuntimeException"
 }
 
-func getArgsTypeList(args []interface{}) (string, error) {
+func GetArgsTypeList(args []interface{}) (string, error) {
 	var (
 		typ   string
 		types string
 	)
 
 	for i := range args {
-		typ = getArgType(args[i])
+		typ = GetArgType(args[i])
 		if typ == "" {
 			return types, perrors.Errorf("cat not get arg %#v type", args[i])
 		}
@@ -225,7 +225,7 @@ func packRequest(service Service, header DubboHeader, req interface{}) ([]byte, 
 	encoder.Encode(service.Method)
 
 	// args = args type list + args value list
-	if types, err = getArgsTypeList(args); err != nil {
+	if types, err = GetArgsTypeList(args); err != nil {
 		return nil, perrors.Wrapf(err, " PackRequest(args:%+v)", args)
 	}
 	encoder.Encode(types)
